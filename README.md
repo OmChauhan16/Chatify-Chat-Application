@@ -1,7 +1,7 @@
 # Chatify - Chat Application 
 Chatify is chat application build with the power of MERN Stack.
 
-Live Checkout [https://chatify-chat-application-1.onrender.com/login]
+[Live Checkout](https://chatify-chat-application-1.onrender.com/login)
 
 
 ![login page](./images/chatify_login.png)
