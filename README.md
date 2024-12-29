@@ -1,6 +1,8 @@
 # Chatify - Chat Application 
 Chatify is chat application build with the power of MERN Stack.
 
+Live Checkout [https://chatify-chat-application-1.onrender.com/login]
+
 
 ![login page](./images/chatify_login.png)
 
@@ -18,7 +20,7 @@ Both should be installed and make sure mongodb is running.
 
 #### First Method
 ```shell
-git clone https://github.com/koolkishan/chat-app-react-nodejs
+git clone https://github.com/OmChauhan16/Chatify-Chat-Application.git
 cd chat-app-react-nodejs
 ```
 Now rename env files from .env.example to .env
