@@ -1,5 +1,6 @@
 const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
+const axios = require("axios");
 
 module.exports.login = async (req, res, next) => {
   try {
@@ -21,6 +22,7 @@ module.exports.register = async (req, res, next) => {
   try {
     const { username, email, password } = req.body;
     const usernameCheck = await User.findOne({ username });
+
     if (usernameCheck)
       return res.json({ msg: "Username already used", status: false });
     const emailCheck = await User.findOne({ email });
@@ -83,3 +85,26 @@ module.exports.logOut = (req, res, next) => {
     next(ex);
   }
 };
+
+
+
+module.exports.seed = async (req, res, next) => {
+  try {
+    // const response = await axios.get(
+    //   `https://api.multiavatar.com/${req.params.seed}`,
+    //   { responseType: 'text' }
+    // );
+
+    const response = await axios.get(
+      `https://api.dicebear.com/7.x/avataaars/svg?seed=${req.params.seed}`,
+      { responseType: 'text' }
+    );
+
+    res.setHeader("Content-Type", "image/svg+xml");
+    res.send(response.data);
+  } catch (err) {
+    console.error("Error fetching avatar:", err.message);
+    res.status(500).json({ message: "Error fetching avatar" });
+  }
+};
+

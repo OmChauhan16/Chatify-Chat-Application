@@ -81,6 +81,15 @@ const Container = styled.div`
       color: white;
       text-transform: uppercase;
     }
+    @media screen and (max-width: 719px) {
+      gap: 0.5rem;
+      img {
+        height: 1.5rem;
+      }
+      h3 {
+        font-size: 1rem;
+      }
+    }
   }
   .contacts {
     display: flex;
@@ -121,6 +130,20 @@ const Container = styled.div`
     .selected {
       background-color: #9a86f3;
     }
+    @media screen and (max-width: 719px) {
+      gap: 0.5rem;
+      .contact {
+        min-height: 4rem;
+        padding: 0.2rem;
+        gap: 0.5rem;
+        .avatar img {
+          height: 2.5rem;
+        }
+        .username h3 {
+          font-size: 0.9rem;
+        }
+      }
+    }
   }
 
   .current-user {
@@ -146,6 +169,15 @@ const Container = styled.div`
         h2 {
           font-size: 1rem;
         }
+      }
+    }
+    @media screen and (max-width: 719px) {
+      gap: 1rem;
+      .avatar img {
+        height: 3rem;
+      }
+      .username h2 {
+        font-size: 1rem;
       }
     }
   }

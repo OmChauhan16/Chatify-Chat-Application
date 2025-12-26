@@ -38,6 +38,8 @@ export default function Chat() {
         const data = await axios.get(`${allUsersRoute}/${currentUser._id}`);
         setContacts(data.data);
       } else {
+        console.log('else-41');
+        
         navigate("/setAvatar");
       }
     }
@@ -61,23 +63,48 @@ export default function Chat() {
   );
 }
 
+
 const Container = styled.div`
-  height: 100vh;
-  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 1rem;
   align-items: center;
   background-color: #131324;
+
   .container {
     height: 85vh;
     width: 85vw;
     background-color: #00000076;
     display: grid;
     grid-template-columns: 25% 75%;
+
+    /* Tablet */
     @media screen and (min-width: 720px) and (max-width: 1080px) {
       grid-template-columns: 35% 65%;
+    }
+
+    /* Mobile */
+    @media screen and (max-width: 719px) {
+      grid-template-columns: 35% 65%;
+      height: 100%;
+      width: 100%;
+      gap: 0;
+    }
+  }
+
+  /* Mobile adjustments */
+  @media screen and (max-width: 719px) {
+    gap: 0;
+    justify-content: flex-start;
+    .container {
+      height: 100%;
+      width: 100%;
     }
   }
 `;
