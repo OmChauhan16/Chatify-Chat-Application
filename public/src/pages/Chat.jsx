@@ -64,47 +64,83 @@ export default function Chat() {
 }
 
 
+// const Container = styled.div`
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   gap: 1rem;
+//   align-items: center;
+//   background-color: #131324;
+
+//   .container {
+//     height: 85vh;
+//     width: 85vw;
+//     background-color: #00000076;
+//     display: grid;
+//     grid-template-columns: 25% 75%;
+
+//     /* Tablet */
+//     @media screen and (min-width: 720px) and (max-width: 1080px) {
+//       grid-template-columns: 35% 65%;
+//     }
+
+//     /* Mobile */
+//     @media screen and (max-width: 719px) {
+//       grid-template-columns: 35% 65%;
+//       height: 100%;
+//       width: 100%;
+//       gap: 0;
+//     }
+//   }
+
+//   /* Mobile adjustments */
+//   @media screen and (max-width: 719px) {
+//     gap: 0;
+//     justify-content: flex-start;
+//     .container {
+//       height: 100%;
+//       width: 100%;
+//     }
+//   }
+// `;
+
+
+
 const Container = styled.div`
-  position: absolute;
+  position: relative; /* not absolute */
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  min-height: 100vh; /* safer than 100dvh/100vh */
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  gap: 1rem;
   align-items: center;
   background-color: #131324;
+  overflow: hidden; /* prevent scroll white space */
 
   .container {
     height: 85vh;
-    width: 85vw;
+    width: 85%;
     background-color: #00000076;
     display: grid;
     grid-template-columns: 25% 75%;
-
-    /* Tablet */
+    max-width: 1000px;
+    
     @media screen and (min-width: 720px) and (max-width: 1080px) {
       grid-template-columns: 35% 65%;
     }
 
-    /* Mobile */
     @media screen and (max-width: 719px) {
       grid-template-columns: 35% 65%;
       height: 100%;
       width: 100%;
+      margin: 0;
       gap: 0;
-    }
-  }
-
-  /* Mobile adjustments */
-  @media screen and (max-width: 719px) {
-    gap: 0;
-    justify-content: flex-start;
-    .container {
-      height: 100%;
-      width: 100%;
     }
   }
 `;
