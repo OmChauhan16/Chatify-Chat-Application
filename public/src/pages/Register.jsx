@@ -1,3 +1,223 @@
+// import React, { useState, useEffect } from "react";
+// import axios from "axios";
+// import styled from "styled-components";
+// import { useNavigate, Link } from "react-router-dom";
+// import Logo from "../assets/logo.svg";
+// import { ToastContainer, toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
+// import { registerRoute } from "../utils/APIRoutes";
+
+// export default function Register() {
+//   const navigate = useNavigate();
+//   const toastOptions = {
+//     position: "bottom-right",
+//     autoClose: 8000,
+//     pauseOnHover: true,
+//     draggable: true,
+//     theme: "dark",
+//   };
+//   const [values, setValues] = useState({
+//     username: "",
+//     email: "",
+//     password: "",
+//     confirmPassword: "",
+//   });
+
+//   useEffect(() => {
+//     if (localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)) {
+//       navigate("/");
+//     }
+//   }, []);
+
+//   const handleChange = (event) => {
+//     setValues({ ...values, [event.target.name]: event.target.value });
+//   };
+
+//   const handleValidation = () => {
+//     const { password, confirmPassword, username, email } = values;
+//     if (password !== confirmPassword) {
+//       toast.error(
+//         "Password and confirm password should be same.",
+//         toastOptions
+//       );
+//       return false;
+//     } else if (username.length < 3) {
+//       toast.error(
+//         "Username should be greater than 3 characters.",
+//         toastOptions
+//       );
+//       return false;
+//     } else if (password.length < 8) {
+//       toast.error(
+//         "Password should be equal or greater than 8 characters.",
+//         toastOptions
+//       );
+//       return false;
+//     } else if (email === "") {
+//       toast.error("Email is required.", toastOptions);
+//       return false;
+//     }
+
+//     return true;
+//   };
+
+//   const handleSubmit = async (event) => {
+//     event.preventDefault();
+//     if (handleValidation()) {
+//       const { email, username, password } = values;
+//       const { data } = await axios.post(registerRoute, {
+//         username,
+//         email,
+//         password,
+//       });
+
+//       if (data.status === false) {
+//         toast.error(data.msg, toastOptions);
+//       }
+//       if (data.status === true) {
+//         localStorage.setItem(
+//           process.env.REACT_APP_LOCALHOST_KEY,
+//           JSON.stringify(data.user)
+//         );
+//         navigate("/");
+//       }
+//     }
+//   };
+
+//   return (
+//     <>
+//       <FormContainer>
+//         <form action="" onSubmit={(event) => handleSubmit(event)}>
+//           <div className="brand">
+//             <img src={Logo} alt="logo" />
+//             <h1>Chatify</h1>
+//           </div>
+//           <input
+//             type="text"
+//             placeholder="Username"
+//             name="username"
+//             onChange={(e) => handleChange(e)}
+//           />
+//           <input
+//             type="email"
+//             placeholder="Email"
+//             name="email"
+//             onChange={(e) => handleChange(e)}
+//           />
+//           <input
+//             type="password"
+//             placeholder="Password"
+//             name="password"
+//             onChange={(e) => handleChange(e)}
+//           />
+//           <input
+//             type="password"
+//             placeholder="Confirm Password"
+//             name="confirmPassword"
+//             onChange={(e) => handleChange(e)}
+//           />
+//           <button type="submit">Create User</button>
+//           <span>
+//             Already have an account ? <Link to="/login">Login.</Link>
+//           </span>
+//         </form>
+//       </FormContainer>
+//       <ToastContainer />
+//     </>
+//   );
+// }
+
+
+// const FormContainer = styled.div`
+//   min-height: 100dvh;
+//   width: 100vw;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   gap: 1rem;
+//   background-color: #131324;
+
+//   .brand {
+//     display: flex;
+//     align-items: center;
+//     gap: 1rem;
+//     justify-content: center;
+
+//     img {
+//       height: 5rem;
+//     }
+
+//     h1 {
+//       color: white;
+//       text-transform: uppercase;
+//     }
+//   }
+
+//   form {
+//     display: flex;
+//     flex-direction: column;
+//     gap: 1.5rem;
+//     background-color: #00000076;
+//     border-radius: 1.5rem;
+//     padding: 2.5rem 2rem;
+//     width: 90%;
+//     max-width: 420px;
+//   }
+
+//   input {
+//     background-color: transparent;
+//     padding: 1rem;
+//     border: 0.1rem solid #4e0eff;
+//     border-radius: 0.4rem;
+//     color: white;
+//     width: 100%;
+//     font-size: 1rem;
+
+//     &:focus {
+//       border: 0.1rem solid #997af0;
+//       outline: none;
+//     }
+//   }
+
+//   button {
+//     background-color: #4e0eff;
+//     color: white;
+//     padding: 1rem;
+//     border: none;
+//     font-weight: bold;
+//     cursor: pointer;
+//     border-radius: 0.4rem;
+//     font-size: 1rem;
+//     text-transform: uppercase;
+
+//     &:hover {
+//       background-color: #4e0eff;
+//     }
+//   }
+
+//   span {
+//     color: white;
+//     text-transform: uppercase;
+//     text-align: center;
+
+//     a {
+//       color: #4e0eff;
+//       text-decoration: none;
+//       font-weight: bold;
+//     }
+//   }
+
+//   /* 🔥 Mobile adjustments */
+//   @media (max-width: 600px) {
+//     form {
+//       padding: 1.8rem 1.4rem;
+//       gap: 1.2rem;
+//     }
+//   }
+// `;
+
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
@@ -6,6 +226,7 @@ import Logo from "../assets/logo.svg";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { registerRoute } from "../utils/APIRoutes";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -22,6 +243,9 @@ export default function Register() {
     password: "",
     confirmPassword: "",
   });
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)) {
@@ -71,10 +295,9 @@ export default function Register() {
         password,
       });
 
-      if (data.status === false) {
+      if (!data.status) {
         toast.error(data.msg, toastOptions);
-      }
-      if (data.status === true) {
+      } else {
         localStorage.setItem(
           process.env.REACT_APP_LOCALHOST_KEY,
           JSON.stringify(data.user)
@@ -87,38 +310,58 @@ export default function Register() {
   return (
     <>
       <FormContainer>
-        <form action="" onSubmit={(event) => handleSubmit(event)}>
+        <form onSubmit={handleSubmit}>
           <div className="brand">
             <img src={Logo} alt="logo" />
             <h1>Chatify</h1>
           </div>
+
           <input
             type="text"
             placeholder="Username"
             name="username"
-            onChange={(e) => handleChange(e)}
+            onChange={handleChange}
           />
           <input
             type="email"
             placeholder="Email"
             name="email"
-            onChange={(e) => handleChange(e)}
+            onChange={handleChange}
           />
-          <input
-            type="password"
-            placeholder="Password"
-            name="password"
-            onChange={(e) => handleChange(e)}
-          />
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            name="confirmPassword"
-            onChange={(e) => handleChange(e)}
-          />
+
+          <div className="password-container">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              name="password"
+              onChange={handleChange}
+            />
+            <span
+              className="toggle-icon"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+            </span>
+          </div>
+
+          <div className="password-container">
+            <input
+              type={showConfirmPassword ? "text" : "password"}
+              placeholder="Confirm Password"
+              name="confirmPassword"
+              onChange={handleChange}
+            />
+            <span
+              className="toggle-icon"
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+            >
+              {showConfirmPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+            </span>
+          </div>
+
           <button type="submit">Create User</button>
           <span>
-            Already have an account ? <Link to="/login">Login.</Link>
+            Already have an account? <Link to="/login">Login.</Link>
           </span>
         </form>
       </FormContainer>
@@ -126,7 +369,6 @@ export default function Register() {
     </>
   );
 }
-
 
 const FormContainer = styled.div`
   min-height: 100dvh;
@@ -180,6 +422,25 @@ const FormContainer = styled.div`
     }
   }
 
+  .password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    input {
+      width: 100%;
+      padding-right: 2.5rem;
+    }
+
+    .toggle-icon {
+      position: absolute;
+      right: 0.75rem;
+      cursor: pointer;
+      color: #ffffffa0;
+      font-size: 1.2rem;
+    }
+  }
+
   button {
     background-color: #4e0eff;
     color: white;
@@ -208,7 +469,6 @@ const FormContainer = styled.div`
     }
   }
 
-  /* 🔥 Mobile adjustments */
   @media (max-width: 600px) {
     form {
       padding: 1.8rem 1.4rem;
